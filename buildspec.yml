@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - yum -y install moreutils
+      - ProjectHash=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - npm install -g aws-cdk
+      - npm install
+  build:
+    commands:
+      - cdk synth > template.yml
+artifacts:
+  secondary-artifacts:
+    S3SiteFiles:
+      discard-paths: yes
+      files:
+        - dist/*
+    BuildOutput:
+      discard-paths: yes
+      files:
+        - serverless.yml
+        - config.json
