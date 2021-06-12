@@ -14,6 +14,7 @@
     "@aws-cdk/aws-codepipeline": "1.108.1",
     "@aws-cdk/aws-codepipeline-actions": "1.108.1",
     "@aws-cdk/aws-s3": "1.108.1",
+    "@aws-cdk/aws-ssm": "1.108.1",
     "aws-cdk": "^1.108.1",
     "ts-node": "^8.1.0",
     "typescript": "~3.5.3"

@@ -3,6 +3,7 @@ import pipeline = require('@aws-cdk/aws-codepipeline');
 import actions = require('@aws-cdk/aws-codepipeline-actions');
 import build = require('@aws-cdk/aws-codebuild');
 import s3 = require('@aws-cdk/aws-s3');
+import ssm = require('@aws-cdk/aws-ssm');
 
 export class StackStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -10,14 +11,16 @@ export class StackStack extends cdk.Stack {
     var projectName = "KotlinApp"
     
     
+    
     var builder = new build.PipelineProject(this, 'buildProj', {
       
     });
     
-    var bucket = new s3.Bucket(this, "Ingest", { })
+    
     var sourceOutput = new pipeline.Artifact();
     var buildOutput = new pipeline.Artifact('buildOutput');
     var changeSet = new pipeline.Artifact('ChangeSet');
+    var param = ssm.StringParameter.valueForStringParameter(this,"patoken");
     
     var pipe = new pipeline.Pipeline(this, 'pipeline', {
       pipelineName: `${projectName}Pipeline`,
@@ -25,11 +28,13 @@ export class StackStack extends cdk.Stack {
         {
           stageName:"Source",
           actions:[
-            new actions.S3SourceAction({
+            new actions.GitHubSourceAction({
               actionName:"Source",
-              bucket:bucket,
-              bucketKey:"project",
-              output:sourceOutput
+              output:sourceOutput,
+              owner:"mhear22",
+              repo:"KotlinTest",
+              branch:"production",
+              oauthToken:cdk.SecretValue.plainText(param)
             })
           ]
         },
