@@ -14,7 +14,7 @@
 			"type": "java",
 			"name": "Launch App",
 			"request": "launch",
-			"mainClass": "kotlintest.App",
+			"mainClass": "kotlintest.main",
 			"projectName": "KotlinTest"
 		}
 	]

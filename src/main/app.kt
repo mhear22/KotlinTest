@@ -1,5 +1,8 @@
-fun main(args: Array<String>) {
-	print("Test")
-	
-	
+package kotlintest
+
+object Test {
+	@JvmStatic
+	fun main(args: Array<String>) {
+		print("Hello World")
+	}
 }
