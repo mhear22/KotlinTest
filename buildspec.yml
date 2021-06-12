@@ -13,13 +13,5 @@ phases:
       - make package
       - cdk synth > template.yml
 artifacts:
-  secondary-artifacts:
-    S3SiteFiles:
-      discard-paths: yes
-      files:
-        - dist/*
-    BuildOutput:
-      discard-paths: yes
-      files:
-        - serverless.yml
-        - config.json
+  files:
+    - template.yml
