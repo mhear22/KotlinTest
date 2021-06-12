@@ -2,13 +2,15 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      java: corretto11
     commands:
-      - yum -y install moreutils
       - ProjectHash=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - npm install -g aws-cdk
       - npm install
   build:
     commands:
+      - make package
       - cdk synth > template.yml
 artifacts:
   secondary-artifacts:

@@ -47,7 +47,7 @@
             </goals>
             <configuration>
               <sourceDirs>
-                <sourceDir>${project.basedir}/src/main</sourceDir>
+                <sourceDir>${project.basedir}/lib/src</sourceDir>
               </sourceDirs>
             </configuration>
           </execution>
@@ -58,7 +58,7 @@
             </goals>
             <configuration>
               <sourceDirs>
-                <sourceDir>${project.basedir}/src/test</sourceDir>
+                <sourceDir>${project.basedir}/lib/src</sourceDir>
               </sourceDirs>
             </configuration>
           </execution>
