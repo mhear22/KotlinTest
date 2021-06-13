@@ -14,7 +14,7 @@ export class StackStack extends cdk.Stack {
     
     var builder = new build.PipelineProject(this, 'buildProj', {
       environment: {
-        buildImage: build.LinuxBuildImage.STANDARD_5_0
+        buildImage: build.LinuxBuildImage.AMAZON_LINUX_2_3
       }
     });
     
