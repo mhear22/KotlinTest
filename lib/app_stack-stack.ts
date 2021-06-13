@@ -23,7 +23,7 @@ export class AppStackStack extends cdk.Stack {
 
     var lamb = new lambda.Function(this, "LambdaCode", {
       code:code,
-      handler:"Test",
+      handler:"Test::handler",
       runtime: lambda.Runtime.JAVA_8_CORRETTO
     });
   }
