@@ -24,6 +24,7 @@ export class StackStack extends cdk.Stack {
     var param = ssm.StringParameter.valueForStringParameter(this,"patoken");
     
     new pipeline.Pipeline(this, 'pipeline', {
+      crossAccountKeys: false,
       pipelineName: `${projectName}Pipeline`,
       stages:[
         {

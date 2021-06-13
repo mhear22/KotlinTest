@@ -5,13 +5,16 @@ phases:
     runtime-versions:
       java: corretto11
     commands:
+      - yum -y install moreutils
       - ProjectHash=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - npm install -g aws-cdk
       - npm install
   build:
     commands:
       - make package
+      - aws s3 cp target/KotlinTest-1.0-SNAPSHOT-jar-with-dependencies.jar s3://a----a/${ProjectHash}
       - cdk synth > template.yml
 artifacts:
   files:
     - template.yml
+    - config.json
