@@ -58,11 +58,13 @@ export class StackStack extends cdk.Stack {
               stackName:`${projectName}Stack`,
               output:changeSet,
               templatePath:buildOutput.atPath('template.yml'),
+              runOrder:1
             }),
             new actions.CloudFormationExecuteChangeSetAction({
               actionName:"ExecuteChange",
               stackName:`${projectName}Stack`,
               changeSetName:changeSet.artifactName||"",
+              runOrder:2
             })
           ]
         }
