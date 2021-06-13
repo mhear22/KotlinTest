@@ -21,10 +21,9 @@ export class StackStack extends cdk.Stack {
     
     var sourceOutput = new pipeline.Artifact();
     var buildOutput = new pipeline.Artifact('buildOutput');
-    var changeSet = new pipeline.Artifact('ChangeSet');
     var param = ssm.StringParameter.valueForStringParameter(this,"patoken");
     
-    var pipe = new pipeline.Pipeline(this, 'pipeline', {
+    new pipeline.Pipeline(this, 'pipeline', {
       pipelineName: `${projectName}Pipeline`,
       stages:[
         {
@@ -60,7 +59,6 @@ export class StackStack extends cdk.Stack {
               adminPermissions:true,
               stackName:`${projectName}Stack`,
               templatePath:buildOutput.atPath('template.yml'),
-              output: changeSet,
               runOrder:1
             }),
             new actions.CloudFormationExecuteChangeSetAction({

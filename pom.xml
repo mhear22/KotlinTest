@@ -34,6 +34,13 @@
   </dependencies>
 
   <build>
+    <sourceDirectory>lib/src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>lib/src</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>kotlin-maven-plugin</artifactId>
