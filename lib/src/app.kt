@@ -1,5 +1,4 @@
 import java.io.*
-import com.fasterxml.jackson.module.kotlin.*
 
 object Test {
 	@JvmStatic
@@ -7,7 +6,10 @@ object Test {
 		print("Hello World")
 	}
 	
-	 fun handler(input: InputStream, output: OutputStream): Unit {
+}
+
+class AWSEntry() {
+	fun handler(input: InputStream, output: OutputStream): Unit {
 		print("Hello AWS Console")
 	}
 }

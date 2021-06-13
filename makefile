@@ -1,7 +1,7 @@
 package:
 	mvn package
 	
-deploy:
+deploy: package
 	cdk deploy
 	
 run: package
