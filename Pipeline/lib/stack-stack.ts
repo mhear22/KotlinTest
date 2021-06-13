@@ -54,8 +54,9 @@ export class StackStack extends cdk.Stack {
         {
           stageName:"Deploy",
           actions: [
-            new actions.CloudFormationCreateUpdateStackAction({
+            new actions.CloudFormationCreateReplaceChangeSetAction({
               actionName:"CreateChange",
+              changeSetName:`${projectName}StackChange`,
               adminPermissions:true,
               stackName:`${projectName}Stack`,
               templatePath:buildOutput.atPath('template.yml'),
