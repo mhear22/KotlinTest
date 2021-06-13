@@ -13,7 +13,9 @@ export class StackStack extends cdk.Stack {
     
     
     var builder = new build.PipelineProject(this, 'buildProj', {
-      
+      environment: {
+        buildImage: build.LinuxBuildImage.STANDARD_5_0
+      }
     });
     
     
@@ -56,14 +58,14 @@ export class StackStack extends cdk.Stack {
               actionName:"CreateChange",
               adminPermissions:true,
               stackName:`${projectName}Stack`,
-              output:changeSet,
               templatePath:buildOutput.atPath('template.yml'),
+              output: changeSet,
               runOrder:1
             }),
             new actions.CloudFormationExecuteChangeSetAction({
               actionName:"ExecuteChange",
               stackName:`${projectName}Stack`,
-              changeSetName:changeSet.artifactName||"",
+              changeSetName:`${projectName}StackChange`,
               runOrder:2
             })
           ]
