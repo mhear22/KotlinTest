@@ -10,7 +10,7 @@ export class StackStack extends cdk.Stack {
     super(scope, id, props);
     var projectName = "KotlinApp"
     
-    
+    var bucket = s3.Bucket.fromBucketName(this, 'a----a','a----a')
     
     var builder = new build.PipelineProject(this, 'buildProj', {
       environment: {
@@ -18,6 +18,7 @@ export class StackStack extends cdk.Stack {
       }
     });
     
+    bucket.grantReadWrite(builder)
     
     var sourceOutput = new pipeline.Artifact();
     var buildOutput = new pipeline.Artifact('buildOutput');
